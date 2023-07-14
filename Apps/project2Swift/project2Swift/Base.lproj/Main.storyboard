@@ -16,18 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8n-SF-aOi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNl-a4-8gu">
+                                <rect key="frame" x="84.666666666666686" y="100" width="224" height="114"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="US"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Glc-CY-Tqz">
                                 <rect key="frame" x="84.666666666666686" y="244" width="224" height="114"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="US"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iW5-OZ-IGA">
-                                <rect key="frame" x="84.666666666666686" y="388" width="224" height="114"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="US"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D26-a3-kJl">
-                                <rect key="frame" x="84.666666666666686" y="100" width="224" height="114"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1V-Cb-NYo">
+                                <rect key="frame" x="84.666666666666686" y="376" width="224" height="114"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="US"/>
                             </button>
@@ -35,19 +35,19 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="iW5-OZ-IGA" firstAttribute="top" secondItem="u8n-SF-aOi" secondAttribute="bottom" constant="30" id="21O-a7-OFO"/>
-                            <constraint firstItem="D26-a3-kJl" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="SSr-hw-S2p"/>
-                            <constraint firstItem="u8n-SF-aOi" firstAttribute="top" secondItem="D26-a3-kJl" secondAttribute="bottom" constant="30" id="TsO-Ys-vKQ"/>
-                            <constraint firstItem="u8n-SF-aOi" firstAttribute="centerX" secondItem="D26-a3-kJl" secondAttribute="centerX" id="X8v-DZ-jR4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="D26-a3-kJl" secondAttribute="top" constant="3" id="kp2-76-qsc"/>
-                            <constraint firstItem="iW5-OZ-IGA" firstAttribute="centerX" secondItem="u8n-SF-aOi" secondAttribute="centerX" id="nME-il-ND5"/>
+                            <constraint firstItem="U1V-Cb-NYo" firstAttribute="centerX" secondItem="Glc-CY-Tqz" secondAttribute="centerX" id="5I7-Lb-YDF"/>
+                            <constraint firstItem="Glc-CY-Tqz" firstAttribute="top" secondItem="yNl-a4-8gu" secondAttribute="bottom" constant="30" id="MIr-Jd-8bO"/>
+                            <constraint firstItem="U1V-Cb-NYo" firstAttribute="top" secondItem="Glc-CY-Tqz" secondAttribute="bottom" constant="18" id="c8K-5l-LFZ"/>
+                            <constraint firstItem="Glc-CY-Tqz" firstAttribute="centerX" secondItem="yNl-a4-8gu" secondAttribute="centerX" id="lgJ-2g-bA4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="yNl-a4-8gu" secondAttribute="top" constant="3" id="vVf-hc-FQi"/>
+                            <constraint firstItem="yNl-a4-8gu" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="wNR-BR-iDo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xml-tf-zx2"/>
                     <connections>
-                        <outlet property="button1" destination="D26-a3-kJl" id="R27-Sx-f4m"/>
-                        <outlet property="button2" destination="u8n-SF-aOi" id="lTD-bW-ikA"/>
-                        <outlet property="button3" destination="iW5-OZ-IGA" id="Dzz-YK-OVk"/>
+                        <outlet property="button1" destination="yNl-a4-8gu" id="y4S-wB-bXR"/>
+                        <outlet property="button2" destination="Glc-CY-Tqz" id="FFU-WJ-Gix"/>
+                        <outlet property="button3" destination="U1V-Cb-NYo" id="pco-Nk-a5i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

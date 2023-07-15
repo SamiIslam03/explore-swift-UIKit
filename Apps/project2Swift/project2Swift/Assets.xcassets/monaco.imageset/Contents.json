@@ -5,12 +5,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "UK@2x.png",
+      "filename" : "monaco@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "UK@3x.png",
+      "filename" : "monaco@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

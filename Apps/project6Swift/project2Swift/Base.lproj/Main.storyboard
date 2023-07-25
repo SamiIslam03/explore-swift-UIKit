@@ -18,6 +18,9 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ueW-mm-B1t">
                                 <rect key="frame" x="84.666666666666686" y="100" width="224" height="114"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ueW-mm-B1t" secondAttribute="height" multiplier="112:57" id="tA6-tm-pEC"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="us"/>
                                 <connections>
@@ -26,6 +29,9 @@
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afD-RK-9LM">
                                 <rect key="frame" x="84.666666666666686" y="244" width="224" height="114"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="afD-RK-9LM" secondAttribute="height" multiplier="112:57" id="6zg-aA-7i4"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="us"/>
                                 <connections>
@@ -34,6 +40,9 @@
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeK-X1-Z1l">
                                 <rect key="frame" x="84.666666666666686" y="388" width="224" height="114"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jeK-X1-Z1l" secondAttribute="height" multiplier="112:57" id="cZt-je-cyI"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="us"/>
                                 <connections>
@@ -47,8 +56,11 @@
                             <constraint firstItem="jeK-X1-Z1l" firstAttribute="top" secondItem="afD-RK-9LM" secondAttribute="bottom" constant="30" id="06f-wY-EuN"/>
                             <constraint firstItem="jeK-X1-Z1l" firstAttribute="centerX" secondItem="afD-RK-9LM" secondAttribute="centerX" id="FoZ-ag-AoV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="ueW-mm-B1t" secondAttribute="top" constant="3" id="Ybr-1E-WrC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jeK-X1-Z1l" secondAttribute="bottom" constant="20" id="ZHf-mz-UXo"/>
                             <constraint firstItem="afD-RK-9LM" firstAttribute="centerX" secondItem="ueW-mm-B1t" secondAttribute="centerX" id="eZZ-PK-26M"/>
+                            <constraint firstItem="jeK-X1-Z1l" firstAttribute="height" secondItem="afD-RK-9LM" secondAttribute="height" id="kiy-oa-vWM"/>
                             <constraint firstItem="ueW-mm-B1t" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="l9u-mL-2Va"/>
+                            <constraint firstItem="afD-RK-9LM" firstAttribute="height" secondItem="ueW-mm-B1t" secondAttribute="height" id="reP-7z-bgE"/>
                             <constraint firstItem="afD-RK-9LM" firstAttribute="top" secondItem="ueW-mm-B1t" secondAttribute="bottom" constant="30" id="z0G-UB-HcA"/>
                         </constraints>
                     </view>

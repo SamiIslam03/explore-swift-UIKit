@@ -13,16 +13,29 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlString = "https://hackingwithswift.com/samples/petitions-1.json"
-        
+        let urlString: String
+        if navigationController?.tabBarItem.tag == 0 {
+            urlString = "https://hackingwithswift.com/samples/petitions-1.json"
+        } else {
+            urlString = "https://hackingwithswift.com/samples/petitions-2.json"
+            //          "https://api.whitehouse.gov/v1/petetions.json?signatureCountFloor=10000&limit=100"
+        }
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
                 // Then we are OK to parse the data
                 parse(json: data)
+                return
             }
         }
-//        "https://api.whitehouse.gov/v1/petitions.json?limit=100"
+        showError()
     }
+        
+    func showError() {
+        let ac = UIAlertController(title: "Loading Error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
+    }
+//        "https://api.whitehouse.gov/v1/petitions.json?limit=100"
     
     func parse(json: Data) {
         let decoder = JSONDecoder()

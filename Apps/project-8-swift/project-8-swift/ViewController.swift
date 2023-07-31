@@ -126,17 +126,18 @@ class ViewController: UIViewController {
                 letterButtons.append(letterButton)
             }
         }
-//        
-//        cluesLabel.backgroundColor = .red
-//        answersLabel.backgroundColor = .blue
-//        buttonsView.backgroundColor = .green
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loadView()
-        // Do any additional setup after loading the view.
+
+        for subview in view.subviews where subview.tag == 1001 {
+            let btn = subview as! UIButton
+            letterButtons.append(btn)
+            btn.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
+        }
+
+        loadLevel()
     }
     
     @objc func letterTapped(_ sender: UIButton) {
@@ -216,8 +217,8 @@ class ViewController: UIViewController {
             }
         }
         
-        cluesLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
-        answersLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
+        cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
+        answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
         
         letterBits.shuffle()
 

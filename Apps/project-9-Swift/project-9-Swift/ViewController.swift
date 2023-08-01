@@ -20,13 +20,18 @@ class ViewController: UITableViewController {
             urlString = "https://hackingwithswift.com/samples/petitions-2.json"
             //          "https://api.whitehouse.gov/v1/petetions.json?signatureCountFloor=10000&limit=100"
         }
-        if let url = URL(string: urlString) {
-            if let data = try? Data(contentsOf: url) {//Blocking code
-                // Then we are OK to parse the data
-                parse(json: data)
-                return
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            [weak self] in
+            if let url = URL(string: urlString) {
+                if let data = try? Data(contentsOf: url) {//Blocking code
+                    // Then we are OK to parse the data
+                    self?.parse(json: data)
+                    return
+                }
             }
         }
+        
         showError()
     }
         

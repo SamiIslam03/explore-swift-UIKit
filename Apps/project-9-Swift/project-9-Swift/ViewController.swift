@@ -32,13 +32,15 @@ class ViewController: UITableViewController {
             }
         }
         
-        showError()
+        self.showError()
     }
         
     func showError() {
-        let ac = UIAlertController(title: "Loading Error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            let ac = UIAlertController( title: "Loading Error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self?.present(ac, animated: true)
+        }
     }
 //        "https://api.whitehouse.gov/v1/petitions.json?limit=100"
     
@@ -47,7 +49,9 @@ class ViewController: UITableViewController {
         
         if let jsonPetition = try? decoder.decode(Petitions.self, from: json) {
             petitions = jsonPetition.results
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     

@@ -16,10 +16,11 @@
 		4C298B222A730D6D009A1AE8 /* Petition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C298B212A730D6D009A1AE8 /* Petition.swift */; };
 		4C298B242A730E74009A1AE8 /* Petitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C298B232A730E74009A1AE8 /* Petitions.swift */; };
 		4C298B262A73E8B7009A1AE8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C298B252A73E8B7009A1AE8 /* DetailViewController.swift */; };
+		4C4799362A7B95FF0070995E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4799352A7B95FF0070995E /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C298B0A2A72E3B5009A1AE8 /* project-9-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "project-9-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C298B0A2A72E3B5009A1AE8 /* project7Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project7Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C298B0D2A72E3B5009A1AE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C298B0F2A72E3B5009A1AE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4C298B112A72E3B5009A1AE8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,6 +31,7 @@
 		4C298B212A730D6D009A1AE8 /* Petition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petition.swift; sourceTree = "<group>"; };
 		4C298B232A730E74009A1AE8 /* Petitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petitions.swift; sourceTree = "<group>"; };
 		4C298B252A73E8B7009A1AE8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		4C4799352A7B95FF0070995E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../project7Swift/project7Swift/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +56,7 @@
 		4C298B0B2A72E3B5009A1AE8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C298B0A2A72E3B5009A1AE8 /* project-9-Swift.app */,
+				4C298B0A2A72E3B5009A1AE8 /* project7Swift.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,6 +73,7 @@
 				4C298B132A72E3B5009A1AE8 /* Main.storyboard */,
 				4C298B162A72E3B6009A1AE8 /* Assets.xcassets */,
 				4C298B182A72E3B6009A1AE8 /* LaunchScreen.storyboard */,
+				4C4799352A7B95FF0070995E /* Info.plist */,
 				4C298B1B2A72E3B6009A1AE8 /* Info.plist */,
 			);
 			path = "project-9-Swift";
@@ -79,9 +82,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4C298B092A72E3B5009A1AE8 /* project-9-Swift */ = {
+		4C298B092A72E3B5009A1AE8 /* project7Swift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C298B1E2A72E3B6009A1AE8 /* Build configuration list for PBXNativeTarget "project-9-Swift" */;
+			buildConfigurationList = 4C298B1E2A72E3B6009A1AE8 /* Build configuration list for PBXNativeTarget "project7Swift" */;
 			buildPhases = (
 				4C298B062A72E3B5009A1AE8 /* Sources */,
 				4C298B072A72E3B5009A1AE8 /* Frameworks */,
@@ -91,9 +94,9 @@
 			);
 			dependencies = (
 			);
-			name = "project-9-Swift";
+			name = project7Swift;
 			productName = project7Swift;
-			productReference = 4C298B0A2A72E3B5009A1AE8 /* project-9-Swift.app */;
+			productReference = 4C298B0A2A72E3B5009A1AE8 /* project7Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -111,7 +114,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4C298B052A72E3B5009A1AE8 /* Build configuration list for PBXProject "project-9-Swift" */;
+			buildConfigurationList = 4C298B052A72E3B5009A1AE8 /* Build configuration list for PBXProject "project7Swift" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -124,7 +127,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4C298B092A72E3B5009A1AE8 /* project-9-Swift */,
+				4C298B092A72E3B5009A1AE8 /* project7Swift */,
 			);
 		};
 /* End PBXProject section */
@@ -134,6 +137,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C4799362A7B95FF0070995E /* Info.plist in Resources */,
 				4C298B1A2A72E3B6009A1AE8 /* LaunchScreen.storyboard in Resources */,
 				4C298B172A72E3B6009A1AE8 /* Assets.xcassets in Resources */,
 				4C298B152A72E3B5009A1AE8 /* Main.storyboard in Resources */,
@@ -349,7 +353,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4C298B052A72E3B5009A1AE8 /* Build configuration list for PBXProject "project-9-Swift" */ = {
+		4C298B052A72E3B5009A1AE8 /* Build configuration list for PBXProject "project7Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C298B1C2A72E3B6009A1AE8 /* Debug */,
@@ -358,7 +362,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C298B1E2A72E3B6009A1AE8 /* Build configuration list for PBXNativeTarget "project-9-Swift" */ = {
+		4C298B1E2A72E3B6009A1AE8 /* Build configuration list for PBXNativeTarget "project7Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C298B1F2A72E3B6009A1AE8 /* Debug */,

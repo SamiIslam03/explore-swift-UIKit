@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C811A3F2A827B9C005429A6 /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C811A3E2A827B9B005429A6 /* FireParticles.sks */; };
 		4CCCA0512A7E4243007586BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCCA0502A7E4243007586BD /* AppDelegate.swift */; };
 		4CCCA0532A7E4243007586BD /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4CCCA0522A7E4243007586BD /* GameScene.sks */; };
 		4CCCA0572A7E4243007586BD /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCCA0562A7E4243007586BD /* GameScene.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C811A3E2A827B9B005429A6 /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticles.sks; sourceTree = "<group>"; };
 		4CCCA04D2A7E4243007586BD /* Project11Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project11Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCCA0502A7E4243007586BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CCCA0522A7E4243007586BD /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				4CCCA0582A7E4243007586BD /* GameViewController.swift */,
 				4CCCA05A2A7E4243007586BD /* Main.storyboard */,
 				4CCCA05D2A7E4245007586BD /* Assets.xcassets */,
+				4C811A3E2A827B9B005429A6 /* FireParticles.sks */,
 				4CCCA05F2A7E4245007586BD /* LaunchScreen.storyboard */,
 			);
 			path = Project11Swift;
@@ -128,6 +131,7 @@
 			files = (
 				4CCCA05C2A7E4243007586BD /* Main.storyboard in Resources */,
 				4CCCA0532A7E4243007586BD /* GameScene.sks in Resources */,
+				4C811A3F2A827B9C005429A6 /* FireParticles.sks in Resources */,
 				4CCCA05E2A7E4245007586BD /* Assets.xcassets in Resources */,
 				4CCCA0612A7E4245007586BD /* LaunchScreen.storyboard in Resources */,
 			);

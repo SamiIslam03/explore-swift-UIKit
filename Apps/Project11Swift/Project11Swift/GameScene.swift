@@ -9,10 +9,16 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreLabel: SKLabelNode!
+    var countLabel: SKLabelNode!
     
     var score = 0 {
-        didSet{
+        didSet {
             scoreLabel.text = "Score: \(score)"
+        }
+    }
+    var count = 5 {
+        didSet {
+            countLabel.text = "Count: \(count)"
         }
     }
     
@@ -40,6 +46,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.horizontalAlignmentMode = .right
         scoreLabel.position = CGPoint(x: 980, y: 620)
         addChild(scoreLabel)
+        
+        countLabel = SKLabelNode(fontNamed: "Chalkduster")
+        countLabel.text = "Count: 0"
+        countLabel.horizontalAlignmentMode = .right
+        countLabel.position = CGPoint(x: 980, y: 580)
+        addChild(countLabel)
         
         editLabel = SKLabelNode(fontNamed: "Chalkduster")
         editLabel.text = "Edit"
@@ -79,7 +91,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 box.physicsBody?.isDynamic = false
                 addChild(box)
             } else {
-                let ball = SKSpriteNode(imageNamed: "ballRed")
+                let ballColor = ["ballRed", "ballBlue", "ballGreen", "ballCyan", "ballGrey", "ballPurple", "ballYellow"]
+                let ball = SKSpriteNode(imageNamed: ballColor.randomElement() ?? "ballRed")
                 ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
                 ball.physicsBody?.restitution = 0.4
                 ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
@@ -130,9 +143,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if object.name == "good" {
             destroy(ball: ball)
             score += 1
+            count -= 1
         } else if object.name == "bad" {
             destroy(ball: ball)
             score -= 1
+            count -= 1
+        }
+        if score == 5 {
+            count += 1
+        } else if count < 0 {
+            score = 0
+            count = 5
         }
     }
     

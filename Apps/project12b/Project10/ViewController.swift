@@ -15,13 +15,15 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
 		super.viewDidLoad()
 
 		navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
-        
         let defaults = UserDefaults.standard
         
         if let savedPeople = defaults.object(forKey: "people") as? Data {
-            if let decodedPeople = try?
-                NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedPeople) as? [Person] {
-                people = decodedPeople!
+            let jsonDecoder = JSONDecoder()
+            
+            do {
+                people = try jsonDecoder.decode([Person].self, from: savedPeople)
+            } catch {
+                print("Failed to load people.")
             }
         }
 	}
@@ -73,21 +75,21 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
 		dismiss(animated: true)
 	}
 
-	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		let person = people[indexPath.item]
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let person = people[indexPath.item]
 
-		let ac = UIAlertController(title: "Rename person", message: nil, preferredStyle: .alert)
-		ac.addTextField()
-		ac.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, ac] _ in
+        let ac = UIAlertController(title: "Rename person", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+        ac.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, ac] _ in
             guard let newName = ac.textFields?[0].text else { return }
-			person.name = newName
+            person.name = newName
             self?.save()
 
-			self?.collectionView?.reloadData()
-		})
+            self?.collectionView?.reloadData()
+        })
 
-		present(ac, animated: true)
-	}
+        present(ac, animated: true)
+    }
 
 	func getDocumentsDirectory() -> URL {
 		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -96,9 +98,15 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
 	}
     
     func save() {
-        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: people, requiringSecureCoding: false) {
+        let jsonEncoder = JSONEncoder()
+        
+        if let savedData = try? jsonEncoder.encode(people){
             let defaults = UserDefaults.standard
             defaults.set(savedData, forKey: "people")
+        } else {
+            print("Failed to save people.")
         }
+        
+        
     }
 }

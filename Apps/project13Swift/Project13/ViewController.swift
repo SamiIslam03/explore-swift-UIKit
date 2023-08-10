@@ -6,6 +6,7 @@
 //  Copyright © 2016 Paul Hudson. All rights reserved.
 //
 
+
 import CoreImage
 import UIKit
 
@@ -14,11 +15,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var intensity: UISlider!
     var currentImage: UIImage!
     
+    var context: CIContext!     //Core image component that handles rendering
+    var currentFilter: CIFilter!//It will store whatever filter the user has activated
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Instafilter"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(importPicture))
+        context = CIContext()
+        currentFilter = CIFilter(name: "CISepiaaTone")
+        
+        let beginImage = CIImage(image: currentImage)
+        currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
+        applyProcessing()
     }
     
     @objc func importPicture () {
@@ -39,6 +48,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func intensityChanged(_ sender: Any) {
+        applyProcessing()
+    }
+    
+    func applyProcessing() {
+        currentFilter.setValue(intensity.value, forKey: kCIInputIntensityKey)
     }
 }
 

@@ -53,6 +53,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func applyProcessing() {
         currentFilter.setValue(intensity.value, forKey: kCIInputIntensityKey)
+        //You cannot convert CI image to UI image directly. we use CG image.
+        if let cgImage = context.createCGImage(currentFilter.outputImage!, from: currentFilter.outputImage!.extent) {
+            let processedImage = UIImage(cgImage: cgImage)
+            imageView.image = processedImage
+        }
     }
 }
 

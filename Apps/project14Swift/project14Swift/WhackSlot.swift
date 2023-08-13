@@ -33,7 +33,7 @@ class WhackSlot: SKNode {
         addChild(cropNode)
     }
     
-    func show(hidTime: Double) {
+    func show(hideTime: Double) {
         if isVisible { return }
         
         charNode.run(SKAction.moveBy(x: 0, y: 80, duration: 0.05))
@@ -41,11 +41,22 @@ class WhackSlot: SKNode {
         isHit = false
         
         if Int.random(in: 0...2) == 0 {
-            charNode.texture = SKTexture(imageNamed: "penguiGood")
+            charNode.texture = SKTexture(imageNamed: "penguinGood")
             charNode.name = "charFriend"
         } else {
             charNode.texture = SKTexture(imageNamed: "penguinEvil")
             charNode.name = "charEnimy"
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + (hideTime * 3.5)) { [weak .self] in
+            self?.hide()
+        }
+    }
+    
+    func hide() {
+        if !isVisible { return }
+        
+        charNode.run(SKAction.moveBy(x: 0, y: -80, duration: 0.05))
+        isVisible = false
     }
 }

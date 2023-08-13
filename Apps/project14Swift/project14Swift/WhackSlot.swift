@@ -13,9 +13,7 @@ class WhackSlot: SKNode {
     
     var isVisible = false
     var isHit = false
-    
-    var popupTime = 0.85
-    
+        
     func configure (at position: CGPoint) {
         self.position = position
         
@@ -49,7 +47,5 @@ class WhackSlot: SKNode {
             charNode.texture = SKTexture(imageNamed: "penguinEvil")
             charNode.name = "charEnimy"
         }
-        
-        
     }
 }

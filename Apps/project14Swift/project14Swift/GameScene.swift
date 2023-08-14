@@ -12,6 +12,7 @@ class GameScene: SKScene {
     var gameScore: SKLabelNode!
     
     var popupTime = 0.85
+    var numRounds = 0
     
     var score = 0 {
         didSet {
@@ -39,11 +40,38 @@ class GameScene: SKScene {
         for i in 0..<4 {createSlot(at: CGPoint(x: 180 + (i * 170), y: 140))}
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self ] in
-            self?.createEnimy()
+            self?.createEnemy()
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: self)
+        let tappedNodes = nodes(at: location)
+        
+        for node in tappedNodes {
+            guard let whackSlot = node.parent?.parent as? WhackSlot else { continue }
             
+            if node.name == "charFriend" {
+                //They shouldn't have whacked this penguin
+                if !whackSlot.isVisible { continue }
+                if whackSlot.isHit { continue }
+
+                whackSlot.hit()
+                score -= 5
+
+                run(SKAction.playSoundFileNamed("whackBad.caf", waitForCompletion:false))
+                
+            } else if node.name == "charEnemy" {
+                //they should have whack this one
+                whackSlot.charNode.xScale = 0.85
+                whackSlot.charNode.yScale = 0.85
+                
+                whackSlot.hit()
+                score += 1
+                
+                run(SKAction.playSoundFileNamed("whack.caf", waitForCompletion: false))
+            }
+        }
     }
     
     func createSlot (at position: CGPoint) {
@@ -53,7 +81,21 @@ class GameScene: SKScene {
         slots.append(slot)
     }
     
-    func createEnimy() {
+    func createEnemy() {
+        numRounds += 1
+        
+        if numRounds >= 30 {
+            for slot in slots {
+                slot.hide()
+            }
+            
+            let gameOver = SKSpriteNode(imageNamed: "gameOver")
+            gameOver.position = CGPoint(x: 512, y: 384)
+            gameOver.zPosition = 1
+            addChild(gameOver)
+            
+            return
+        }
         popupTime = 0.991
         
         slots.shuffle()
@@ -69,7 +111,7 @@ class GameScene: SKScene {
         let delay = Double.random(in: minDelay...maxDelay)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {[weak self] in
-            self?.createEnimy()
+            self?.createEnemy()
         }
     }
 }

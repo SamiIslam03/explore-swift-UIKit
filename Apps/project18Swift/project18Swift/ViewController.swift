@@ -17,10 +17,12 @@ class ViewController: UIViewController {
 //        assert(1 == 1, "Math Failure!")
 //        assert(1 == 2, "Math Failure!")
 //        assert(myReallySlowMethod() == true, "The slow method return false, which is a bad thing")
-        for i in 1...100 {
-            print("Got number \(i)")//fn + f6, view>debug area>Activity console, breakpoint sign> + > exception breakpoint > exception all to objective c.
-        }
+//        for i in 1...100 {
+//            print("Got number \(i)")//fn + f6, view>debug area>Activity console, breakpoint sign> + > exception breakpoint > exception all to objective c.
+//        }
+        //going to project 13
         
+//        sign of parallel boxes > we will see 3d layout of our app.
     }
     
     func myReallySlowMethod () -> Bool {

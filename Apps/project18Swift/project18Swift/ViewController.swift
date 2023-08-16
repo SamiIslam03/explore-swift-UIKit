@@ -16,7 +16,10 @@ class ViewController: UIViewController {
 //        print("Some message", terminator: " ")
 //        assert(1 == 1, "Math Failure!")
 //        assert(1 == 2, "Math Failure!")
-        assert(myReallySlowMethod() == true, "The slow method return false, which is a bad thing")
+//        assert(myReallySlowMethod() == true, "The slow method return false, which is a bad thing")
+        for i in 1...100 {
+            print("Got number \(i)")//fn + f6, view>debug area>Activity console, breakpoint sign> + > exception breakpoint > exception all to objective c.
+        }
         
     }
     

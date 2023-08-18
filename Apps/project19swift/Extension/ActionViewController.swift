@@ -7,7 +7,7 @@
 
 import UIKit
 import MobileCoreServices
-import UniformTypeIdentifiers
+//import UniformTypeIdentifiers
 
 class ActionViewController: UIViewController {
 
@@ -15,11 +15,11 @@ class ActionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let inputItem = extensionContext?.inputItems.first as? NSExtensionItem {
             if let itemProvider = inputItem.attachments?.first {
                 itemProvider.loadItem(forTypeIdentifier: kUTTypePropertyList as String) { [weak self] (dict, error) in
-                    //do stuff
+                    // do stuff!
                     guard let itemDictionary = dict as? NSDictionary else { return }
                     guard let javaScriptValues =  itemDictionary[NSExtensionJavaScriptPreprocessingResultsKey] as? NSDictionary else { return }
                     print(javaScriptValues) 

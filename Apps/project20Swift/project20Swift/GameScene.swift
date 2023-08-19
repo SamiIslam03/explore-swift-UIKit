@@ -69,6 +69,44 @@ class GameScene: SKScene {
     }
     
     @objc func launchFireWorks() {
+        let movementAmmount: CGFloat = 1800
         
+        switch Int.random(in: 0...3) {
+        case 0:
+            //fire five, straight up
+            createFireWorks(xMovement: 0, x: 512, y: bottomEdge)
+            createFireWorks(xMovement: 0, x: 512 - 200, y: bottomEdge)
+            createFireWorks(xMovement: 0, x: 512 - 100, y: bottomEdge)
+            createFireWorks(xMovement: 0, x: 512 + 100, y: bottomEdge)
+            createFireWorks(xMovement: 0, x: 512 + 200, y: bottomEdge)
+            break
+        case 1:
+            //fire five, in a fun
+            createFireWorks(xMovement: 0, x: 512, y: bottomEdge)
+            createFireWorks(xMovement: -200, x: 512 - 200, y: bottomEdge)
+            createFireWorks(xMovement: -100, x: 512 - 200, y: bottomEdge)
+            createFireWorks(xMovement: 100, x: 512 - 100, y: bottomEdge)
+            createFireWorks(xMovement: 200, x: 512 + 200, y: bottomEdge)
+            
+            break
+        case 2:
+            //fire five, from the left to right
+            createFireWorks(xMovement: movementAmmount, x: leftEdge, y: bottomEdge + 400)
+            createFireWorks(xMovement: movementAmmount, x: leftEdge, y: bottomEdge + 300)
+            createFireWorks(xMovement: movementAmmount, x: leftEdge, y: bottomEdge + 200)
+            createFireWorks(xMovement: movementAmmount, x: leftEdge, y: bottomEdge  + 100)
+            createFireWorks(xMovement: movementAmmount, x: leftEdge, y: bottomEdge)
+
+            break
+        case 3:
+            //fire five, from the left to right
+            createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge + 400)
+            createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge + 300)
+            createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge + 200)
+            createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge  + 100)
+            createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge)            break
+        default:
+            //fire
+        }
     }
 }

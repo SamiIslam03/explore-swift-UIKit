@@ -130,8 +130,27 @@ class GameScene: SKScene {
                 }
             }
                 
-            if node.name = "selected"
+            node.name = "selected"
             node.colorBlendFactor = 0
+        }
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        checkTouches(touches)
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        checkTouches(touches)
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        for (index, firework) in fireworks.enumerated().reversed() {
+            if firework.position.y > 900 {
+                // this uses a position high above so that rockets can explode off screen
+                fireworks.remove(at: index)
+                firework.removeFromParent()
+            }
         }
     }
 }

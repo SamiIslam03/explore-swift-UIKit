@@ -104,9 +104,34 @@ class GameScene: SKScene {
             createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge + 300)
             createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge + 200)
             createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge  + 100)
-            createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge)            break
+            createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge)
+            break
         default:
             //fire
+            break
+        }
+    }
+    
+    func checkTouches(_ touches: Set<UITouch>) {
+        guard let touch = touches.first else { return }
+        
+        let location = touch.location(in: self)
+        let nodesAtPoint = nodes(at: location)
+        
+        for case let node as SKSpriteNode in nodesAtPoint {
+            guard node.name == "firework" else { continue }
+            
+            
+            for parent in fireworks {
+                guard let firework = parent.children.first as? SKSpriteNode else { continue }
+                if firework.name == "selected" && firework.color != node.color {
+                    firework.name = "firework"
+                    firework.colorBlendFactor = 1
+                }
+            }
+                
+            if node.name = "selected"
+            node.colorBlendFactor = 0
         }
     }
 }

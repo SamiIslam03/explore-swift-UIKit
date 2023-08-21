@@ -100,14 +100,13 @@ class GameScene: SKScene {
             break
         case 3:
             //fire five, from the left to right
-            createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge + 400)
-            createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge + 300)
-            createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge + 200)
-            createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge  + 100)
-            createFireWorks(xMovement: movementAmmount, x: rightEdge, y: bottomEdge)
+            createFireWorks(xMovement: -movementAmmount, x: rightEdge, y: bottomEdge + 400)
+            createFireWorks(xMovement: -movementAmmount, x: rightEdge, y: bottomEdge + 300)
+            createFireWorks(xMovement: -movementAmmount, x: rightEdge, y: bottomEdge + 200)
+            createFireWorks(xMovement: -movementAmmount, x: rightEdge, y: bottomEdge  + 100)
+            createFireWorks(xMovement: -movementAmmount, x: rightEdge, y: bottomEdge)
             break
         default:
-            //fire
             break
         }
     }
@@ -152,5 +151,48 @@ class GameScene: SKScene {
                 firework.removeFromParent()
             }
         }
+    }
+    
+    func explode (firework: SKNode) {
+        if let emitter = SKEmitterNode(fileNamed: "explode") {
+            emitter.position = firework.position
+                    addChild(emitter)
+        }
+        firework.removeFromParent()
+    }
+    
+    func explodeFireworks() {
+        var numExplode = 0
+        
+        for (index, fireworkContainer) in fireworks.enumerated().reversed() {
+            guard let firework = fireworkContainer.children.first as? SKSpriteNode else { return }
+            
+            if firework.name == "selected" {
+                explode(firework: fireworkContainer)
+                fireworks.remove(at: index)
+                numExplode += 1
+            }
+        }
+        
+        switch numExplode {
+        case 0:
+            break
+        case 1:
+            score += 200
+        case 2:
+            score += 500
+        case 3:
+            score += 1500
+        case 4:
+            score += 2500
+        default:
+            score += 4000
+        }
+    }
+    
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        guard let skView = view as? SKView else { return }
+        guard let gameScene = skView.scene as? GameScene else { return }
+        gameScene.explodeFireworks()
     }
 }

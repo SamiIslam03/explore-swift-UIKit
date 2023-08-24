@@ -17,6 +17,10 @@ class GameScene: SKScene {
     }
     
     var livesImages = [SKSpriteNode]()
+    var lives = 3
+    
+    var activeSliceBG: SKShapeNode!
+    var activeSliceFG: SKShapeNode!
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -53,6 +57,20 @@ class GameScene: SKScene {
     }
     
     func createSlices() {
+        activeSliceBG = SKShapeNode()
+        activeSliceBG.zPosition = 2
+        
+        activeSliceFG = SKShapeNode()
+        activeSliceFG.zPosition = 3
+        
+        activeSliceBG.strokeColor = UIColor(red: 1, green: 0.9, blue: 0, alpha: 1)
+        activeSliceBG.lineWidth = 9
+        
+        activeSliceFG.strokeColor = UIColor.white
+        activeSliceFG.lineWidth = 5
+        
+        addChild(activeSliceBG)
+        addChild(activeSliceFG)
         
     }
 }

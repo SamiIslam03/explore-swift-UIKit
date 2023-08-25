@@ -22,7 +22,7 @@ class GameScene: SKScene {
     var activeSliceBG: SKShapeNode!
     var activeSliceFG: SKShapeNode!
     
-    var activeSlicePoint = [CGPoint]()
+    var activeSlicePoints = [CGPoint]()
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -78,10 +78,29 @@ class GameScene: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
-        activeSlicePoint.append(location)
+        activeSlicePoints.append(location)
         redRawActiveSlice()
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        activeSliceBG.run(SKAction.fadeOut(withDuration: 0.25))
+        activeSliceBG.run(SKAction.fadeOut(withDuration: 0.25))
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        activeSlicePoints.removeAll(keepingCapacity: true)
+        
+        let location = touch.location(in: self)
+        activeSlicePoints.append(location)
+        
+        activeSliceBG.removeAllActions()
+        activeSliceFG.removeAllActions()
+        
+        activeSliceBG.alpha = 1
+        activeSliceFG.alpha = 1
+    
+    }
     func redRawActiveSlice() {
         
     }

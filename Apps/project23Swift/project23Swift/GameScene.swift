@@ -175,7 +175,33 @@ class GameScene: SKScene {
         }
 
         // position code goes here
+        let randomPosition = CGPoint(x: Int.random(in: 64...960), y: -128)
+        enemy.position = randomPosition
 
+        // 2
+        let randomAngularVelocity = CGFloat.random(in: -3...3 )
+        let randomXVelocity: Int
+
+        // 3
+        if randomPosition.x < 256 {
+            randomXVelocity = Int.random(in: 8...15)
+        } else if randomPosition.x < 512 {
+            randomXVelocity = Int.random(in: 3...5)
+        } else if randomPosition.x < 768 {
+            randomXVelocity = -Int.random(in: 3...5)
+        } else {
+            randomXVelocity = -Int.random(in: 8...15)
+        }
+
+        // 4
+        let randomYVelocity = Int.random(in: 24...32)
+
+        // 5
+        enemy.physicsBody = SKPhysicsBody(circleOfRadius: 64)
+        enemy.physicsBody?.velocity = CGVector(dx: randomXVelocity * 40, dy: randomYVelocity * 40)
+        enemy.physicsBody?.angularVelocity = randomAngularVelocity
+        enemy.physicsBody?.collisionBitMask = 0
+        
         addChild(enemy)
         activeEnemies.append(enemy)
     }

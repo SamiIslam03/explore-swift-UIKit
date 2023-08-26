@@ -23,6 +23,7 @@ class GameScene: SKScene {
     var activeSliceFG: SKShapeNode!
     
     var activeSlicePoints = [CGPoint]()
+    var isSwooshSoundActive = false
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -79,47 +80,78 @@ class GameScene: SKScene {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         activeSlicePoints.append(location)
-        redRawActiveSlice()
+        redrawActiveSlice()
+        
+        if !isSwooshSoundActive {
+            playSwooshSound()
+        }
+    }
+    
+    func playSwooshSound() {
+        isSwooshSoundActive = true
+        
+        let randonmNumber = Int.random(in: 1...3)
+        let soundName = "swoosh\(randonmNumber).caf"
+        
+        let swooshSound = SKAction.playSoundFileNamed(soundName, waitForCompletion: true)
+        
+        run(swooshSound) { [weak self] in
+            self?.isSwooshSoundActive = false
+        }
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         activeSliceBG.run(SKAction.fadeOut(withDuration: 0.25))
-        activeSliceBG.run(SKAction.fadeOut(withDuration: 0.25))
+        activeSliceFG.run(SKAction.fadeOut(withDuration: 0.25))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
+
+        // 1
         activeSlicePoints.removeAll(keepingCapacity: true)
-        
+
+        // 2
         let location = touch.location(in: self)
         activeSlicePoints.append(location)
-        
+
+        // 3
+        redrawActiveSlice()
+
+        // 4
         activeSliceBG.removeAllActions()
         activeSliceFG.removeAllActions()
-        
+
+        // 5
         activeSliceBG.alpha = 1
         activeSliceFG.alpha = 1
-    
     }
-    func redRawActiveSlice() {
+    
+    func redrawActiveSlice() {
+        // 1
         if activeSlicePoints.count < 2 {
             activeSliceBG.path = nil
             activeSliceFG.path = nil
             return
         }
-        
+
+        // 2
         if activeSlicePoints.count > 12 {
             activeSlicePoints.removeFirst(activeSlicePoints.count - 12)
         }
-        
+
+        // 3
         let path = UIBezierPath()
         path.move(to: activeSlicePoints[0])
-        
+
         for i in 1 ..< activeSlicePoints.count {
             path.addLine(to: activeSlicePoints[i])
         }
-        
+
+        // 4
         activeSliceBG.path = path.cgPath
         activeSliceFG.path = path.cgPath
     }
+ 
 }

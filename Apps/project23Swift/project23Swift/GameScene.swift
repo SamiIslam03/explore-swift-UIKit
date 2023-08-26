@@ -24,6 +24,7 @@ class GameScene: SKScene {
     
     var activeSlicePoints = [CGPoint]()
     var isSwooshSoundActive = false
+    var activeEnemies = [SKSpriteNode]()
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -153,5 +154,29 @@ class GameScene: SKScene {
         activeSliceBG.path = path.cgPath
         activeSliceFG.path = path.cgPath
     }
- 
+    
+    func createEnemy(forceBomb: ForceBomb = .random) {
+        let enemy: SKSpriteNode
+
+        var enemyType = Int.random(in: 0...6)
+
+        if forceBomb == .never {
+            enemyType = 1
+        } else if forceBomb == .always {
+            enemyType = 0
+        }
+
+        if enemyType == 0 {
+            // bomb code goes here
+        } else {
+            enemy = SKSpriteNode(imageNamed: "penguin")
+            run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
+            enemy.name = "enemy"
+        }
+
+        // position code goes here
+
+        addChild(enemy)
+        activeEnemies.append(enemy)
+    }
 }

@@ -5,9 +5,15 @@
 //  Created by Sami Islam on 8/24/23.
 //
 
+import AVFoundation
 import SpriteKit
 
 class GameScene: SKScene {
+    
+    enum ForceBomb {
+        case never, always, random
+    }
+    
     var gameScore: SKLabelNode!
     
     var score = 0 {
@@ -25,6 +31,7 @@ class GameScene: SKScene {
     var activeSlicePoints = [CGPoint]()
     var isSwooshSoundActive = false
     var activeEnemies = [SKSpriteNode]()
+    var bombSoundEffect: AVAudioPlayer?
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -168,6 +175,35 @@ class GameScene: SKScene {
 
         if enemyType == 0 {
             // bomb code goes here
+            //1
+            enemy = SKSpriteNode()
+            enemy.zPosition = 1
+            enemy.name = "bombContainer"
+            
+            //2
+            let bombImage = SKSpriteNode(imageNamed: "sliceBomb")
+            bombImage.name = "bomb"
+            enemy.addChild(bombImage)
+            
+            // 3
+            if bombSoundEffect != nil {
+                bombSoundEffect?.stop()
+                bombSoundEffect = nil
+            }
+            
+            // 4
+            if let path = Bundle.main.url(forResource: "sliceBombFuse", withExtension: "caf") {
+                if let sound = try? AVAudioPlayer(contentsOf: path){
+                    bombSoundEffect = sound
+                    sound.play()
+                }
+            }
+            
+            // 5
+            if let emitter = SKEmitterNode(fileNamed: "sliceFuse") {
+                emitter.position = CGPoint(x: 76, y: 64)
+                enemy.addChild(emitter)
+            }
         } else {
             enemy = SKSpriteNode(imageNamed: "penguin")
             run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
@@ -205,4 +241,22 @@ class GameScene: SKScene {
         addChild(enemy)
         activeEnemies.append(enemy)
     }
+    
+    override func update(_ currentTime: TimeInterval) {
+        var bombCount = 0
+
+        for node in activeEnemies {
+            if node.name == "bombContainer" {
+                bombCount += 1
+                break
+            }
+        }
+
+        if bombCount == 0 {
+            // no bombs – stop the fuse sound!
+            bombSoundEffect?.stop()
+            bombSoundEffect = nil
+        }
+    }
+    
 }

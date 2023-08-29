@@ -54,24 +54,46 @@ import UIKit
 
 //4
 
-let input = "Swift is like Objective-C without C"
+//let input = "Swift is like Objective-C without C"
+//
+//input.contains("Swift")
+//
+//let languages = ["Python", "Ruby", "Swift"]
+//languages.contains("Swift")
+//
+//extension String {
+//    func containsAny(of array: [String]) -> Bool {
+//        for item in array {
+//            if self.contains(item) {
+//                return true
+//            }
+//        }
+//        return false
+//    }
+//}
+//
+//input.containsAny(of: languages)
+//
+//languages.contains(where: input.contains)
 
-input.contains("Swift")
+//5
+//let string = "This is a test string"
+//
+//let attributes : [NSAttributedString.Key: Any] = [
+//    .foregroundColor: UIColor.white,
+//    .backgroundColor: UIColor.red,
+//    .font: UIFont.boldSystemFont(ofSize: 36)
+//]
+//
+//let attributedString = NSAttributedString(string: string, attributes: attributes)
 
-let languages = ["Python", "Ruby", "Swift"]
-languages.contains("Swift")
+//6
+let string = "This is a test string"
 
-extension String {
-    func containsAny(of array: [String]) -> Bool {
-        for item in array {
-            if self.contains(item) {
-                return true
-            }
-        }
-        return false
-    }
-}
+let attributedString = NSMutableAttributedString(string: string)
+attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 8), range: NSRange(location: 0, length: 4))
+attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 16), range: NSRange(location: 5, length: 2))
+attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 24), range: NSRange(location: 8, length: 1))
+attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 32), range: NSRange(location: 10, length: 4))
+attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 40), range: NSRange(location: 15, length: 6))
 
-input.containsAny(of: languages)
-
-languages.contains(where: input.contains)

@@ -5,6 +5,7 @@
 //  Created by Sami Islam on 8/30/23.
 //
 
+import MultipeerConnectivity
 import UIKit
 
 class ViewController: UICollectionViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -15,6 +16,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         title = "Selfie Share"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showConnectionPrompt))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(importPicture))
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -47,8 +49,16 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         guard let image = info[.editedImage] as? UIImage else { return}
         dismiss(animated: true)
         
-        image.insert(image, at:0)
+        images.insert(image, at:0)
         collectionView.reloadData()
+    }
+    
+    @objc func showConnectionPrompt () {
+        let ac = UIAlertController(title: "Connect to others", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Host a session", style: .default, handler: startHosting))
+        ac.addAction(UIAlertAction(title: "Join a session", style: .default, handler: joinSession))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(ac, animated: true)
     }
 
 }

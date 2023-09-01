@@ -8,13 +8,13 @@
 import MultipeerConnectivity
 import UIKit
 
-class ViewController: UICollectionViewController, UINavigationControllerDelegate UIImagePickerControllerDelegate, MCSessionDelegate, MCBrowserViewControllerDelegate {
+class ViewController: UICollectionViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, MCSessionDelegate, MCBrowserViewControllerDelegate {
 
 //    var peerID: MCPeerID?
     var peerID = MCPeerID(displayName: UIDevice.current.name)
     var mcSession: MCSession?
     var mcAdvertiserAssisstant: MCAdvertiserAssistant?
-    
+    var images = [UIImage]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +30,8 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     
     func startHosting(action: UIAlertAction) {
         guard let mcSession = mcSession else { return }
-        mcAdvertiserAssistant = MCAdvertiserAssistant(serviceType: "hws-project25", discoveryInfo: nil, session: mcSession)
-        mcAdvertiserAssistant?.start()
+        mcAdvertiserAssisstant = MCAdvertiserAssistant(serviceType: "hws-project25", discoveryInfo: nil, session: mcSession)
+        mcAdvertiserAssisstant?.start()
     }
 
     func joinSession(action: UIAlertAction) {
@@ -65,6 +65,25 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
 
         images.insert(image, at: 0)
         collectionView.reloadData()
+        
+        // 1
+        guard let mcSession = mcSession else { return }
+
+        // 2
+        if mcSession.connectedPeers.count > 0 {
+            // 3
+            if let imageData = image.pngData() {
+                // 4
+                do {
+                    try mcSession.send(imageData, toPeers: mcSession.connectedPeers, with: .reliable)
+                } catch {
+                    // 5
+                    let ac = UIAlertController(title: "Send error", message: error.localizedDescription, preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "OK", style: .default))
+                    present(ac, animated: true)
+                }
+            }
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
@@ -116,6 +135,15 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
 
         @unknown default:
             print("Unknown state received: \(peerID.displayName)")
+        }
+    }
+    
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        DispatchQueue.main.async { [weak self] in
+            if let image = UIImage(data: data) {
+                self?.images.insert(image, at: 0)
+                self?.collectionView.reloadData()
+            }
         }
     }
 }

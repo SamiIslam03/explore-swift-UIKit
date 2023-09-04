@@ -19,7 +19,14 @@ class GameScene: SKScene {
     var player: SKSpriteNode!
     
     override func didMove(to view: SKView) {
+        let background = SKSpriteNode(imageNamed: "background")
+        background.position = CGPoint(x: 512, y: 384)
+        background.zPosition = -1
+        background.blendMode = .replace
+        addChild(background)
+        
         loadLevel()
+        createPlayer()
     }
     func loadLevel() {
         guard let levelURL = Bundle.main.url(forResource: "level1", withExtension: "txt") else {

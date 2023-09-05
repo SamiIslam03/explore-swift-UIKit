@@ -16,7 +16,7 @@ enum CollisionTypes: UInt32 {
     case finish = 16
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: SKSpriteNode!
     var lastTouchPosition: CGPoint?
     
@@ -46,6 +46,7 @@ class GameScene: SKScene {
         
         loadLevel()
         createPlayer()
+        physicsWorld.contactDelegate = self
         
         physicsWorld.gravity = .zero
         
@@ -164,4 +165,17 @@ class GameScene: SKScene {
         }
         #endif
     }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard let nodeA = contact.bodyA.node else { return }
+        guard let nodeB = contact.bodyB.node else { return }
+
+        if nodeA == player {
+            playerCollided(with: nodeB)
+        } else if nodeB == player {
+            playerCollided(with: nodeA)
+        }
+    }
+    
+    
 }

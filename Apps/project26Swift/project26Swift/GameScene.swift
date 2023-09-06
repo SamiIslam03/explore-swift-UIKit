@@ -21,6 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastTouchPosition: CGPoint?
     
     var motionManager: CMMotionManager?
+    var isGameOver = false
     
     var scoreLabel: SKLabelNode!
 
@@ -154,6 +155,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        guard isGameOver == false else { return }
+        
         #if targetEnvironment(simulator)
         if let lastTouchPosition = lastTouchPosition {
             let diff = CGPoint(x: lastTouchPosition.x - player.position.x, y: lastTouchPosition.y - player.position.y)
@@ -176,6 +179,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             playerCollided(with: nodeA)
         }
     }
-    
-    
+    func playerCollided(with node: SKNode) {
+        if node.name == "vortex" {
+            player.physicsBody?.isDynamic = false
+            isGameOver = true
+            score -= 1
+            
+            let move = SKAction.move(to: node.position, duration: 0.25)
+            let scale = SKAction.scale(to: 0.0001, duration: 0.25)
+            let remove = SKAction.removeFromParent()
+            let sequence = SKAction.sequence([move, scale, remove])
+            
+            player.run(sequence) { [weak self] in
+                self?.createPlayer()
+                self?.isGameOver = false
+            }
+        } else if node.name == "star" {
+            node.removeFromParent()
+            score += 1
+        } else if {
+            //next level
+        }
+    }
 }

@@ -197,7 +197,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if node.name == "star" {
             node.removeFromParent()
             score += 1
-        } else if {
+        } else if node.name ==  "finish" {
             //next level
         }
     }

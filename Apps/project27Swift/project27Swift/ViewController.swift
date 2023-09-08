@@ -33,7 +33,10 @@ class ViewController: UIViewController {
                 drawCheckerboard()
             case 3:
                 drawRotatedSquares()
-
+            case 4:
+                drawLines()
+            case 5:
+                drawImagesAndText()
             default:
                 break
             }
@@ -108,6 +111,66 @@ class ViewController: UIViewController {
             ctx.cgContext.strokePath()
         }
 
+        imageView.image = img
+    }
+    
+    func drawLines() {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+
+        let img = renderer.image { ctx in
+            ctx.cgContext.translateBy(x: 256, y: 256)
+
+            var first = true
+            var length: CGFloat = 256
+
+            for _ in 0 ..< 256 {
+                ctx.cgContext.rotate(by: .pi / 2)
+
+                if first {
+                    ctx.cgContext.move(to: CGPoint(x: length, y: 50))
+                    first = false
+                } else {
+                    ctx.cgContext.addLine(to: CGPoint(x: length, y: 50))
+                }
+
+                length *= 0.99
+            }
+
+            ctx.cgContext.setStrokeColor(UIColor.black.cgColor)
+            ctx.cgContext.strokePath()
+        }
+
+        imageView.image = img
+    }
+    
+    func drawImagesAndText() {
+        // 1
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+
+        let img = renderer.image { ctx in
+            // 2
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+
+            // 3
+            let attrs: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 36),
+                .paragraphStyle: paragraphStyle
+            ]
+
+            // 4
+            let string = "The best-laid schemes o'\nmice an' men gang aft agley"
+            let attributedString = NSAttributedString(string: string, attributes: attrs)
+
+            // 5
+            attributedString.draw(with: CGRect(x: 32, y: 32, width: 448, height: 448), options: .usesLineFragmentOrigin, context: nil)
+
+            // 5
+            let mouse = UIImage(named: "mouse")
+            mouse?.draw(at: CGPoint(x: 300, y: 150))
+        }
+
+        // 6
         imageView.image = img
     }
 }

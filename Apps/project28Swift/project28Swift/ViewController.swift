@@ -5,6 +5,7 @@
 //  Created by Sami Islam on 9/9/23.
 //
 
+import LocalAuthentication
 import UIKit
 
 class ViewController: UIViewController {
@@ -21,8 +22,29 @@ class ViewController: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(saveSecretMessage), name: UIApplication.willResignActiveNotification, object: nil)
     }
     @IBAction func authenticateTapped(_ sender: Any) {
-        unlockSecretMessage()
+//        unlockSecretMessage()
+        let context = LAContext()
+        var error: NSError?
+
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Identify yourself!"
+
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                [weak self] success, authenticationError in
+
+                DispatchQueue.main.async {
+                    if success {
+                        self?.unlockSecretMessage()
+                    } else {
+                        // error
+                    }
+                }
+            }
+        } else {
+            // no biometry
+        }
     }
+
     
     @objc func adjustForKeyboard(notification: Notification) {
         guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
@@ -49,15 +71,20 @@ class ViewController: UIViewController {
         }
     }
     
+//    func unlockSecretMessage() {
+//        secret.isHidden = false
+//        title = "Secret stuff!"
+//
+//        if let text = KeychainWrapper.standard.string(forKey: "SecretMessage") {
+//            secret.text = text
+//        }
+//    }
     func unlockSecretMessage() {
         secret.isHidden = false
         title = "Secret stuff!"
 
-        if let text = KeychainWrapper.standard.string(forKey: "SecretMessage") {
-            secret.text = text
-        }
+        secret.text = KeychainWrapper.standard.string(forKey: "SecretMessage") ?? ""
     }
-    
     @objc func saveSecretMessage() {
         guard secret.isHidden == false else { return }
         

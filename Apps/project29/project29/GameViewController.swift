@@ -38,6 +38,9 @@ class GameViewController: UIViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
+            
+            angleChanged(self)
+            velocityChanged(self)
         }
     }
 
@@ -53,9 +56,36 @@ class GameViewController: UIViewController {
         return true
     }
     @IBAction func angleChanged(_ sender: Any) {
+        angleLabel.text = "Angle: \(Int(angleSlider.value))°"
+
     }
     @IBAction func velocityChanged(_ sender: Any) {
+        angleLabel.text = "Angle: \(Int(angleSlider.value))°"
     }
     @IBAction func launch(_ sender: Any) {
+        angleSlider.isHidden = true
+        angleLabel.isEnabled = true
+        
+        velocitySlider.isHidden = true
+        velocityLabel.isEnabled = true
+        
+        launchButton.isHidden = true
+        
+        currentGame?.launch(angle: Int(angleSlider.value), velocity: Int(velocitySlider.value))
+    }
+    
+    func activePlayer(number: Int) {
+        if number == 1{
+            playerNumber.text = "<<< PLAYER ONE"
+        } else {
+            playerNumber.text = "PLAYER TWO >>>"
+        }
+        angleSlider.isHidden = false
+        angleLabel.isEnabled = false
+        
+        velocitySlider.isHidden = false
+        velocityLabel.isEnabled = false
+        
+        launchButton.isHidden = false
     }
 }

@@ -7,25 +7,27 @@
 
 import SpriteKit
 
-enum CollissionType: UInt32 {
+enum CollisionTypes: UInt32 {
     case banana = 1
     case building = 2
     case player = 4
 }
 
 class GameScene: SKScene {
+    var buildings = [BuildingNode]()
     weak var viewController: GameViewController!
-    var buildings = [BuildingNode()]
     
     var player1: SKSpriteNode!
     var player2: SKSpriteNode!
     var banana: SKSpriteNode!
 
     var currentPlayer = 1
+     
     override func didMove(to view: SKView) {
         backgroundColor = UIColor(hue: 0.669, saturation: 0.99, brightness: 0.67, alpha: 1)
 
         createBuildings()
+        createPlayers
     }
     func createBuildings() {
         var currentX: CGFloat = -15
@@ -42,6 +44,7 @@ class GameScene: SKScene {
             buildings.append(building)
         }
     }
+    
     func launch(angle: Int, velocity: Int) {
     }
     

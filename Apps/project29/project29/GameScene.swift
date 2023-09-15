@@ -27,7 +27,7 @@ class GameScene: SKScene {
         backgroundColor = UIColor(hue: 0.669, saturation: 0.99, brightness: 0.67, alpha: 1)
 
         createBuildings()
-        createPlayers
+        createPlayers()
     }
     func createBuildings() {
         var currentX: CGFloat = -15
@@ -72,5 +72,9 @@ class GameScene: SKScene {
         let player2Building = buildings[buildings.count - 2]
         player2.position = CGPoint(x: player2Building.position.x, y: player2Building.position.y + ((player2Building.size.height + player2.size.height) / 2))
         addChild(player2)
+    }
+    
+    func deg2red(degrees: Int) -> Double {
+        return Double(degrees) * .pi/180
     }
 }

@@ -46,6 +46,22 @@ class GameScene: SKScene {
     }
     
     func launch(angle: Int, velocity: Int) {
+        let speed = Double(velocity) / 10
+        let radians = deg2red(degrees: angle)
+        
+        if banana != nil {
+            banana.removeFromParent()
+            banana = nil
+        }
+        
+        banana = SKSpriteNode(imageNamed: "banana")
+        banana.name = "banana"
+        banana.physicsBody = SKPhysicsBody(circleOfRadius: banana.size.width / 2)
+        banana.physicsBody?.categoryBitMask = CollisionTypes.banana.rawValue
+        banana.physicsBody?.collisionBitMask = CollisionTypes.building.rawValue | CollisionTypes.player.rawValue
+        banana.physicsBody?.usesPreciseCollisionDetection = true
+        addChild(banana)
+        
     }
     
     func createPlayers() {

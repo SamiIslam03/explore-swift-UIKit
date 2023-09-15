@@ -62,6 +62,23 @@ class GameScene: SKScene {
         banana.physicsBody?.usesPreciseCollisionDetection = true
         addChild(banana)
         
+        if currentPlayer == 1 {
+            // 4
+                    banana.position = CGPoint(x: player1.position.x - 30, y: player1.position.y + 40)
+                    banana.physicsBody?.angularVelocity = -20
+
+                    // 5
+                    let raiseArm = SKAction.setTexture(SKTexture(imageNamed: "player1Throw"))
+                    let lowerArm = SKAction.setTexture(SKTexture(imageNamed: "player"))
+                    let pause = SKAction.wait(forDuration: 0.15)
+                    let sequence = SKAction.sequence([raiseArm, pause, lowerArm])
+                    player1.run(sequence)
+
+                    // 6
+                    let impulse = CGVector(dx: cos(radians) * speed, dy: sin(radians) * speed)
+                    banana.physicsBody?.applyImpulse(impulse)
+        }
+        
     }
     
     func createPlayers() {

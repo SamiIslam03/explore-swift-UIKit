@@ -18,6 +18,7 @@ class GameViewController: UIViewController {
     @IBOutlet var velocityLabel: UILabel!
     @IBOutlet var launchButton: UIButton!
     @IBOutlet var playerNumber: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

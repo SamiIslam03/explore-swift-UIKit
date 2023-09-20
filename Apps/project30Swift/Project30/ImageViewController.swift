@@ -1,6 +1,6 @@
 //
 //  ImageViewController.swift
-//  Project30
+
 //
 //  Created by TwoStraws on 20/08/2016.
 //  Copyright (c) 2016 TwoStraws. All rights reserved.
